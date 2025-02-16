@@ -3,7 +3,7 @@ watchedAnimes = [...new Set(watchedAnimes.map(anime => anime.toLowerCase()))];
 
 const API_URL = "https://api.jikan.moe/v4/anime?q=";
 const cachedAnimeData = JSON.parse(localStorage.getItem("cachedAnimeData")) || {};
-const ITEMS_PER_PAGE = 50;
+const ITEMS_PER_PAGE = 20;
 let currentPage = 1;
 
 async function fetchAnimeData(animeName) {
