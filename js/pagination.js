@@ -1,26 +1,66 @@
-import { watchedAnimes } from "./storage.js";
-import { displayWatchedAnimes, closeAnimeInfo } from "./ui.js";
+import { fetchAnimeDetails } from "./animeFetch.js";
 
-export function renderPagination(filteredLength = watchedAnimes.length) {
-    const totalPages = Math.ceil(filteredLength / 20);
-    const paginationContainer = document.getElementById("pagination-container");
+const itemsPerPage = 30;
+let currentPage = 1;
+let currentFilter = "all";
 
-    if (!paginationContainer) return;
+export function renderPage(page, animeList) {
+    const container = document.getElementById("anime-container");
+    const pageIndicator = document.getElementById("pageIndicator");
 
-    const paginationDiv = document.createElement("div");
-    paginationDiv.classList.add("pagination");
+    container.innerHTML = "";
 
-    for (let i = 1; i <= totalPages; i++) {
-        const pageButton = document.createElement("button");
-        pageButton.textContent = i;
-        pageButton.addEventListener("click", () => {
-            displayWatchedAnimes(i);
-            closeAnimeInfo();
-        });
+    // 🔍 Filtrar animes según el tipo seleccionado
+    const filteredAnimes = animeList.filter(anime => 
+        currentFilter === "all" || anime.type === currentFilter
+    );
 
-        paginationDiv.appendChild(pageButton);
-    }
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const paginatedAnimes = filteredAnimes.slice(start, end);
 
-    paginationContainer.innerHTML = "";
-    paginationContainer.appendChild(paginationDiv);
+    paginatedAnimes.forEach(anime => {
+        const animeCard = document.createElement("div");
+        animeCard.classList.add("anime-card");
+
+        const img = document.createElement("img");
+        img.src = `/img/${anime.name}.jpg`;
+        img.alt = anime.name;
+        img.dataset.anime = anime.name;
+        img.addEventListener("click", () => fetchAnimeDetails(anime.name));
+
+        const title = document.createElement("p");
+        title.classList.add("anime-title");
+        title.textContent = anime.name;
+
+        animeCard.appendChild(img);
+        animeCard.appendChild(title);
+        container.appendChild(animeCard);
+    });
+
+    pageIndicator.textContent = page;
+    document.getElementById("prevPage").disabled = page === 1;
+    document.getElementById("nextPage").disabled = end >= filteredAnimes.length;
+}
+
+export function setupPagination(animeList) {
+    document.getElementById("prevPage").addEventListener("click", () => {
+        if (currentPage > 1) {
+            currentPage--;
+            renderPage(currentPage, animeList);
+        }
+    });
+
+    document.getElementById("nextPage").addEventListener("click", () => {
+        if ((currentPage * itemsPerPage) < animeList.length) {
+            currentPage++;
+            renderPage(currentPage, animeList);
+        }
+    });
+
+    document.getElementById("filter").addEventListener("change", (event) => {
+        currentFilter = event.target.value;
+        currentPage = 1; // Resetear a la primera página tras filtrar
+        renderPage(currentPage, animeList);
+    });
 }

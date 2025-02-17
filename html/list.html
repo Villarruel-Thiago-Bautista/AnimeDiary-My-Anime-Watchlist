@@ -3,29 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Animes Vistos</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <title>Lista de Animes</title>
+    <link rel="stylesheet" href="/css/list.css">
 </head>
 <body>
-
-    <h1>Lista de Animes Vistos</h1>
-
-    <div class="filter-container">
-        <label for="filter-dropdown" class="filter-label">Filtrar por tipo:</label>
-        <select id="filter-dropdown" class="filter-dropdown">
-            <option value="tv">Series</option>
-            <option value="movie">Películas</option>
+    <header>
+        <h1>Lista de series y peliculas de anime vistas.</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <select id="filter">
             <option value="all">Todos</option>
+            <option value="series">Series</option>
+            <option value="movies">Películas</option>
         </select>
-    </div>
 
-    <div id="anime-list"></div>
-    <div id="info" class="hidden"></div>
-
-    <div id="pagination-container" class="pagination-container"></div>
-
+        <section id="anime-container"></section>
+    </main>
+    
+    <section id="info">
+        <h2>Detalles del Anime</h2>
+        <p>Selecciona un anime para ver más detalles aquí.</p>
+    </section>
+    
+    <div class="pagination">
+        <button id="prevPage" disabled>Anterior</button>
+        <span id="pageIndicator">1</span>
+        <button id="nextPage">Siguiente</button>
+    </div>    
+    
+    <footer>
+        <p>&copy; 2025 Lista de Animes. Todos los derechos reservados.</p>
+    </footer>
+    
     <script type="module" src="/js/main.js"></script>
 </body>
 </html>
+
+
 
 
