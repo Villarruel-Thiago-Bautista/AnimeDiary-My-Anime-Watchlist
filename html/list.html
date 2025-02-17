@@ -10,12 +10,22 @@
 
     <h1>Lista de Animes Vistos</h1>
 
+    <div class="filter-container">
+        <label for="filter-dropdown" class="filter-label">Filtrar por tipo:</label>
+        <select id="filter-dropdown" class="filter-dropdown">
+            <option value="tv">Series</option>
+            <option value="movie">Películas</option>
+            <option value="all">Todos</option>
+        </select>
+    </div>
+
     <div id="anime-list"></div>
     <div id="info" class="hidden"></div>
 
     <div id="pagination-container" class="pagination-container"></div>
 
-    <script src="/js/list.js"></script>
+    <script type="module" src="/js/main.js"></script>
 </body>
 </html>
+
 
