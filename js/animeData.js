@@ -79,7 +79,7 @@ export const animeList = [
     { name: "Dr Stone New World", type: "series" },
     { name: "Domestic na Kanojo", type: "series" },
     { name: "Kanokon", type: "series" },
-    { name: "Akane Iro ni Somaru Saka", type: "series" },
+    { name: "AkaneIro ni Somaru Saka", type: "series" },
     { name: "Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai", type: "series" },
     { name: "Baka to Test to Shoukanjuu", type: "series" },
     { name: "High Score Girl", type: "series" },
