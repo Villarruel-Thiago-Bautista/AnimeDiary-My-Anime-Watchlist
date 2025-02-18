@@ -12,9 +12,12 @@ export function fetchAnimeDetails(anime) {
             if (data.data && data.data.length > 0) {
                 const animeInfo = data.data[0];
 
-                const genres = animeInfo.genres.map(g => g.name).join(", ");
                 const episodes = animeInfo.episodes || "Desconocido";
                 const status = animeInfo.status === "Finished Airing" ? "Finalizado" : "En emisión";
+                const type = animeInfo.type;
+                const releaseDate = animeInfo.aired.string || "Desconocido";
+                const studio = animeInfo.studios.length > 0 ? animeInfo.studios[0].name : "Desconocido";
+                const duration = animeInfo.type === "Movie" ? animeInfo.duration : "";
 
                 let trailerContent = ""; // Variable para el trailer
 
@@ -36,7 +39,10 @@ export function fetchAnimeDetails(anime) {
                         </div>
                         <div class="div2">
                             <h2>${animeInfo.title}</h2>
-                            <p><strong>Géneros:</strong> ${genres}</p>
+                            <p><strong>Tipo:</strong> ${type}</p>
+                            <p><strong>Fecha de estreno:</strong> ${releaseDate}</p>
+                            <p><strong>Estudio:</strong> ${studio}</p>
+                            ${duration ? `<p><strong>Duración:</strong> ${duration}</p>` : ""}
                             <p><strong>Episodios:</strong> ${episodes}</p>
                             <p><strong>Estado:</strong> ${status}</p>
                             <p>${animeInfo.synopsis}</p>
