@@ -1,25 +1,37 @@
 import { fetchAnimeDetails } from "./animeFetch.js";
 
-const itemsPerPage = 30;
+// 🔹 Constantes y variables globales
+const itemsPerPage = 20; 
 let currentPage = 1;
-let currentFilter = "all";
+let currentFilter = "all"; 
+let currentSearch = ""; 
 
-export function renderPage(page, animeList) {
-    const container = document.getElementById("anime-container");
-    const pageIndicator = document.getElementById("pageIndicator");
-
-    container.innerHTML = "";
-
-    // 🔍 Filtrar animes según el tipo seleccionado
-    const filteredAnimes = animeList.filter(anime => 
-        currentFilter === "all" || anime.type === currentFilter
+// 🔹 Filtra la lista de animes según el filtro seleccionado y el cuadro de búsqueda
+function filterAnimes(animeList) {
+    return animeList.filter(anime => 
+        (currentFilter === "all" || anime.type === currentFilter) &&
+        anime.name.toLowerCase().includes(currentSearch.toLowerCase())
     );
+}
 
+// 🔹 Ordena la lista de animes alfabéticamente por nombre
+function sortAnimes(animeList) {
+    return animeList.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+}
+
+// 🔹 Pagina la lista de animes
+function paginateAnimes(animeList, page) {
     const start = (page - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-    const paginatedAnimes = filteredAnimes.slice(start, end);
+    return animeList.slice(start, end);
+}
 
-    paginatedAnimes.forEach(anime => {
+// 🔹 Renderiza la lista de animes en la página
+function renderAnimeList(animeList) {
+    const container = document.getElementById("anime-container");
+    container.innerHTML = "";
+
+    animeList.forEach(anime => {
         const animeCard = document.createElement("div");
         animeCard.classList.add("anime-card");
 
@@ -37,30 +49,78 @@ export function renderPage(page, animeList) {
         animeCard.appendChild(title);
         container.appendChild(animeCard);
     });
-
-    pageIndicator.textContent = page;
-    document.getElementById("prevPage").disabled = page === 1;
-    document.getElementById("nextPage").disabled = end >= filteredAnimes.length;
 }
 
+// 🔹 Renderiza la paginación
+function createPaginationButtons(totalPages, animeList) {
+    const paginationContainer = document.getElementById("pagination");
+    paginationContainer.innerHTML = "";
+
+    const addButton = (page, isDisabled = false) => {
+        const button = document.createElement("button");
+        button.textContent = page;
+        button.classList.add("pagination-btn");
+
+        if (isDisabled) {
+            button.disabled = true;
+            button.classList.add("disabled");
+        } else {
+            if (page === currentPage) {
+                button.classList.add("active");
+            }
+            button.addEventListener("click", () => {
+                currentPage = page;
+                renderPage(currentPage, animeList);
+            });
+        }
+
+        paginationContainer.appendChild(button);
+    };
+
+    if (totalPages <= 5) {
+        for (let i = 1; i <= totalPages; i++) {
+            addButton(i);
+        }
+    } else {
+        addButton(1);
+        if (currentPage > 2) addButton("...", true);
+        
+        let startPage = Math.max(2, currentPage - 1);
+        let endPage = Math.min(totalPages - 1, currentPage + 1);
+        for (let i = startPage; i <= endPage; i++) {
+            addButton(i);
+        }
+
+        if (currentPage < totalPages - 2) addButton("...", true);
+        addButton(totalPages);
+    }
+}
+
+// 🔹 Renderiza la página completa
+export function renderPage(page, animeList) {
+    const infoContainer = document.getElementById("info");
+    infoContainer.style.display = "none";
+    infoContainer.innerHTML = "";
+
+    let filteredAnimes = filterAnimes(animeList);
+    let sortedAnimes = sortAnimes(filteredAnimes);
+    let paginatedAnimes = paginateAnimes(sortedAnimes, page);
+
+    renderAnimeList(paginatedAnimes);
+    createPaginationButtons(Math.ceil(filteredAnimes.length / itemsPerPage), animeList);
+}
+
+// 🔹 Configura eventos para paginación, filtros y búsqueda
 export function setupPagination(animeList) {
-    document.getElementById("prevPage").addEventListener("click", () => {
-        if (currentPage > 1) {
-            currentPage--;
-            renderPage(currentPage, animeList);
-        }
-    });
-
-    document.getElementById("nextPage").addEventListener("click", () => {
-        if ((currentPage * itemsPerPage) < animeList.length) {
-            currentPage++;
-            renderPage(currentPage, animeList);
-        }
-    });
-
     document.getElementById("filter").addEventListener("change", (event) => {
         currentFilter = event.target.value;
-        currentPage = 1; // Resetear a la primera página tras filtrar
+        currentPage = 1;
+        renderPage(currentPage, animeList);
+    });
+
+    document.getElementById("search").addEventListener("input", (event) => {
+        currentSearch = event.target.value;
+        currentPage = 1;
         renderPage(currentPage, animeList);
     });
 }

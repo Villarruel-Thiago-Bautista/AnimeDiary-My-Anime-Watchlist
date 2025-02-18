@@ -80,7 +80,7 @@ body {
 
 /* ----- HEADER ----- */
 header {
-    background-color: #333;
+    background-color: #ff4c4c;
     color: white;
     padding: 20px;
     text-align: center;
@@ -109,7 +109,7 @@ main p {
 main a {
     display: inline-block;
     padding: 10px 15px;
-    background-color: #333;
+    background-color: #ff4c4c;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -117,14 +117,20 @@ main a {
 }
 
 main a:hover {
-    background-color: #555;
+    background-color: #ff1a1a;
 }
 
 /* ----- FOOTER ----- */
 footer {
     text-align: center;
     padding: 15px;
-    background-color: #333;
+    background-color: #ff4c4c;
     color: white;
     margin-top: 40px;
+
+    .logo-github {
+        width: 2em;
+        height: auto;
+        margin: 0 auto;
+      }
 }
