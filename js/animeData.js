@@ -181,7 +181,7 @@ export const animeList = [
     { name: "Naruto Shippuden The Movie", type: "movies" }, // ver
     { name: "Byousoku 5 Centimeter", type: "movies" },
     { name: "Toki wo Kakeru Shoujo", type: "movies" },
-    { name: "El niño y la garza", type: "movies" },
+    { name: "Kimitachi wa Dō Ikiru ka", type: "movies" },
     { name: "Sora no Aosa wo Shiru Hito yo", type: "movies" },
     { name: "Seishun Buta Yarou wa Randoseru Girl no Yume wo Minai", type: "movies" },
     { name: "Chiisana Eiyuu Kani to Tamago to Toumei Ningen", type: "movies" },
