@@ -26,7 +26,10 @@ export function fetchAnimeDetails(anime) {
             infoContainer.innerHTML = `
                 <section id="anime-hero">
                     <img src="${animeInfo.images.jpg.large_image_url || 'path/to/placeholder-image.jpg'}" alt="${animeInfo.title}">
-                    <h2>${animeInfo.title}</h2>
+                    <div id="anime-title-div">
+                        <h2>${animeInfo.title}</h2>
+                    </div>
+    
                 </section>
 
                 <section id="anime-details">

@@ -77,7 +77,6 @@ nav ul li a:hover {
 
 #anime-hero h2 {
     position: absolute;
-    bottom: -50px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 32px;
@@ -86,6 +85,14 @@ nav ul li a:hover {
     z-index: 2;
     padding: 10px 20px;
     border-radius: 10px;
+}
+
+#anime-title-div {
+    padding-bottom: 30px;
+    align-content: center;
+    align-items: center;
+    margin: auto;
+    text-align: center;
 }
 
 /* Overlay oscuro para mejorar la legibilidad */

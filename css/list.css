@@ -63,62 +63,71 @@ nav ul li a:hover {
 /* ----- CONTENEDOR DE ANIMES ----- */
 #anime-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Evita que las imágenes se agranden */
     gap: 15px;
     padding: 20px;
     justify-content: center;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .anime-card {
     position: relative;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     overflow: hidden;
+    width: 180px; /* Tamaño fijo */
+    height: 300px; /* Tamaño fijo */
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .anime-card img {
     display: block;
     width: 100%;
-    height: auto;
-    border-radius: 10px;
-    transition: all 0.3s ease-in-out;
+    height: 80%; /* La imagen ocupa el 80% del contenedor */
+    object-fit: cover; /* Ajusta la imagen sin distorsionarla */
+    transition: filter 0.3s ease-in-out;
 }
 
 /* Oscurecer la imagen al pasar el mouse */
 .anime-card:hover img {
-    filter: brightness(50%);
     cursor: pointer;
+    filter: brightness(50%);
 }
 
-/* Contenedor para el icono de "play" */
+/* Icono de "play" */
 .play-icon {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 40%; /* Centrar verticalmente en la imagen */
+    left: 50%; /* Centrar horizontalmente */
+    transform: translate(-50%, -50%); /* Ajustar el centro exacto */
     width: 50px;
     height: 50px;
     background: #ff4c4c;
     clip-path: polygon(25% 0%, 100% 50%, 25% 100%);
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-    pointer-events: none; /* Para evitar que interfiera con el clic */
+    pointer-events: none;
 }
 
-/* Mostrar el icono de "play" cuando se pasa el mouse */
+/* Mostrar el icono al pasar el mouse */
 .anime-card:hover .play-icon {
     opacity: 1;
 }
 
-
+/* Título del anime */
 .anime-title {
-    margin-top: 5px;
-    font-size: 14px;
+    margin-top: 10px;
+    font-size: 16px;
     font-weight: bold;
-    padding: 3px 6px;
-    border-radius: 5px;
-    position: relative;
-    z-index: 1;
-    color: #ffffff;
+    color: white;
+    padding: 0px 2px;
+    white-space: normal; /* Permitir múltiples líneas */
+    text-overflow: ellipsis; /* Agregar "..." si es necesario */
 }
 
 /* ----- PAGINACIÓN ----- */
@@ -191,48 +200,10 @@ nav ul li a:hover {
     background: #333;
     padding: 20px;
     margin: 20px auto;
-    max-width: 900px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: left;
     gap: 20px;
-}
-
-.parent {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    width: 100%;
-}
-
-.div1 img {
-    width: 250px;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
-}
-
-.div2 {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.trailer {
-    width: 100%;
-    text-align: center;
-    margin-top: 20px;
-}
-
-#info iframe {
-    max-width: 100%;
-    height: 315px;
-    border-radius: 10px;
-}
-
-#info iframe:hover {
-    box-shadow: 0 0px 8px #ff4c4c;
-    transition: all 0.2s;
 }
 
 /* ----- FOOTER ----- */
@@ -249,8 +220,6 @@ footer a {
     text-decoration: none;
     color: #ff4c4c;
 }
-
-
 
 footer .logo-github {
     width: 2em;

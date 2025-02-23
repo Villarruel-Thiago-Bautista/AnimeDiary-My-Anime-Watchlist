@@ -1,9 +1,8 @@
-// 🔹 Constantes y variables globales
-const itemsPerPage = 22; // Número de elementos por página
-let currentPage = 1; // Página actual
-let currentFilter = "all"; // Filtro actual
-let currentSearch = ""; // Término de búsqueda actual
-let searchTimeout; // Timeout para la búsqueda en tiempo real
+// 🔹 Variables globales
+let itemsPerPage = 18; // Número dinámico de elementos por página
+let currentPage = 1;
+let currentFilter = "all";
+let currentSearch = "";
 
 // 🔹 Filtra la lista de animes según el filtro seleccionado y el cuadro de búsqueda
 function filterAnimes(animeList) {
@@ -134,11 +133,8 @@ export function setupPagination(animeList) {
     });
 
     document.getElementById("search").addEventListener("input", (event) => {
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(() => {
-            currentSearch = event.target.value;
-            currentPage = 1;
-            renderPage(currentPage, animeList);
-        }, 300); // Debounce de 300ms
+        currentSearch = event.target.value;
+        currentPage = 1;
+        renderPage(currentPage, animeList);
     });
 }
