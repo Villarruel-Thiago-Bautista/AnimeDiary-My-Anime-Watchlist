@@ -17,9 +17,6 @@ export function fetchAnimeDetails(anime) {
             const animeInfo = data.data[0];
             infoContainer.style.display = "block"; 
 
-            // 🔹 Traduce la sinopsis antes de mostrarla
-            const sinopsisTraducida = await translateText(animeInfo.synopsis);
-
             // Actualiza las metaetiquetas
             updateMetaTags(animeInfo);
 
@@ -64,27 +61,6 @@ export function fetchAnimeDetails(anime) {
                 infoContainer.innerHTML = `<p>Hubo un error al cargar los detalles del anime. Por favor, intenta nuevamente más tarde.</p>`;
             }
         });
-}
-
-async function translateText(text, targetLang = "es") {
-    const url = "https://api.mymemory.translated.net/get";
-    const chunkSize = 500; // Máximo permitido por MyMemory
-    let translatedText = "";
-
-    for (let i = 0; i < text.length; i += chunkSize) {
-        const chunk = text.substring(i, i + chunkSize);
-
-        try {
-            const response = await fetch(`${url}?q=${encodeURIComponent(chunk)}&langpair=en|${targetLang}`);
-            const data = await response.json();
-            translatedText += (data.responseData.translatedText || chunk) + " ";
-        } catch (error) {
-            console.error("Error al traducir:", error);
-            translatedText += chunk; // En caso de error, usa el texto original
-        }
-    }
-
-    return translatedText.trim();
 }
 
 function updateMetaTags(animeInfo) {
