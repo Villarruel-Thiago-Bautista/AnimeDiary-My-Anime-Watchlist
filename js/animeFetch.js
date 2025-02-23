@@ -41,7 +41,7 @@ export function fetchAnimeDetails(anime) {
 
                     <div class="detail-card">
                         <h3>Sinopsis</h3>
-                        <p>${sinopsisTraducida}</p>
+                        <p>${animeInfo.synopsis}</p>
                     </div>
 
                     ${animeInfo.trailer?.youtube_id ? `
