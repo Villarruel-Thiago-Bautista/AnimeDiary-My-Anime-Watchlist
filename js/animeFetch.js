@@ -1,14 +1,12 @@
 export function fetchAnimeDetails(anime) {
     const infoContainer = document.getElementById("anime-info-container");
     if (infoContainer) {
-        infoContainer.innerHTML = `
-            <div class="loading-spinner"></div>
-        `;
+        infoContainer.innerHTML = `<div class="loading-spinner"></div>`;
     }
 
     fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(anime)}&limit=1`)
         .then(response => response.json())
-        .then(data => {
+        .then(async (data) => {
             if (!infoContainer) return;
 
             if (!data.data?.length) {
@@ -17,19 +15,21 @@ export function fetchAnimeDetails(anime) {
             }
 
             const animeInfo = data.data[0];
-            infoContainer.style.display = "block"; // Cambiamos a "block" para el nuevo diseño
+            infoContainer.style.display = "block"; 
+
+            // 🔹 Traduce la sinopsis antes de mostrarla
+            const sinopsisTraducida = await translateText(animeInfo.synopsis);
 
             // Actualiza las metaetiquetas
             updateMetaTags(animeInfo);
 
-            // Renderiza la información del anime en el nuevo diseño
+            // Renderiza la información del anime
             infoContainer.innerHTML = `
                 <section id="anime-hero">
                     <img src="${animeInfo.images.jpg.large_image_url || 'path/to/placeholder-image.jpg'}" alt="${animeInfo.title}">
                     <div id="anime-title-div">
                         <h2>${animeInfo.title}</h2>
                     </div>
-    
                 </section>
 
                 <section id="anime-details">
@@ -44,7 +44,7 @@ export function fetchAnimeDetails(anime) {
 
                     <div class="detail-card">
                         <h3>Sinopsis</h3>
-                        <p>${animeInfo.synopsis}</p>
+                        <p>${sinopsisTraducida}</p>
                     </div>
 
                     ${animeInfo.trailer?.youtube_id ? `
@@ -64,6 +64,27 @@ export function fetchAnimeDetails(anime) {
                 infoContainer.innerHTML = `<p>Hubo un error al cargar los detalles del anime. Por favor, intenta nuevamente más tarde.</p>`;
             }
         });
+}
+
+async function translateText(text, targetLang = "es") {
+    const url = "https://api.mymemory.translated.net/get";
+    const chunkSize = 500; // Máximo permitido por MyMemory
+    let translatedText = "";
+
+    for (let i = 0; i < text.length; i += chunkSize) {
+        const chunk = text.substring(i, i + chunkSize);
+
+        try {
+            const response = await fetch(`${url}?q=${encodeURIComponent(chunk)}&langpair=en|${targetLang}`);
+            const data = await response.json();
+            translatedText += (data.responseData.translatedText || chunk) + " ";
+        } catch (error) {
+            console.error("Error al traducir:", error);
+            translatedText += chunk; // En caso de error, usa el texto original
+        }
+    }
+
+    return translatedText.trim();
 }
 
 function updateMetaTags(animeInfo) {
