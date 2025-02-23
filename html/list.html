@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Animes</title>
-    <link rel="stylesheet" href="/css/list.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Explora y filtra tu lista de animes favoritos con Anime Diary. Conectado a la API de Jikan para información en tiempo real.">
+        <meta name="keywords" content="anime, lista, series, películas, Jikan, API, Anime Diary">
+        <meta name="author" content="Villarruel Thiago Bautista">
+        <title>Anime Diary - Lista de Animes</title>
+        <link rel="stylesheet" href="/css/list.css">
+    </head>
 <body>
     <header>
-        <h1>Lista de series y peliculas de anime vistas.</h1>
-        <nav>
+        <h1>Anime Diary</h1>
+        <nav aria-label="Navegación principal">
             <ul>
-                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../index.html" aria-current="page">Inicio</a></li>
             </ul>
         </nav>
     </header>
     
     <main>
-        <select id="filter">
-            <option value="all">Todos</option>
-            <option value="series">Series</option>
-            <option value="movies">Películas</option>
-        </select>
-
-        <input type="text" id="search" placeholder="Buscar anime...">
+        <section id="filters">
+            <select id="filter">
+                <option value="all">Todos</option>
+                <option value="series">Series</option>
+                <option value="movies">Películas</option>
+            </select>
+            <input type="text" id="search" placeholder="Buscar anime...">
+        </section>
+    
         <section id="anime-container"></section>
+        <section id="info"></section>
+    
+        <div id="pagination"></div>
     </main>
-    
-    <section id="info">
-        <h2>Detalles del Anime</h2>
-        <p>Selecciona un anime para ver más detalles aquí.</p>
-    </section>  
-    
-    <div id="pagination"></div>
-
     <footer>
         <p>&copy; 2025 Página creada por <a href="https://github.com/Villarruel-Thiago-Bautista"
             >Villarruel Thiago Bautista
@@ -48,7 +48,3 @@
     <script type="module" src="/js/main.js"></script>
 </body>
 </html>
-
-
-
-

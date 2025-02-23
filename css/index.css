@@ -1,4 +1,4 @@
-/* Reset básico para una mejor consistencia */
+/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -6,131 +6,166 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Roboto', sans-serif;
+    background-color: #1a1a1a;
+    color: #ffffff;
     text-align: center;
     line-height: 1.6;
-}
-
-/* ----- HEADER ----- */
-header {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-/* ----- MAIN ----- */
-main {
-    max-width: 800px;
-    margin: 40px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-main h2 {
-    color: #444;
-    margin-bottom: 15px;
-}
-
-main p {
-    font-size: 18px;
-    margin-bottom: 15px;
-}
-
-main a {
-    display: inline-block;
-    padding: 10px 15px;
-    background-color: #333;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s;
-}
-
-main a:hover {
-    background-color: #555;
-}
-
-/* ----- FOOTER ----- */
-footer {
-    text-align: center;
-    padding: 15px;
-    background-color: #333;
-    color: white;
-    margin-top: 40px;
-}
-/* Reset básico para una mejor consistencia */
-* {
-    margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    margin: 0;
+    scroll-behavior: smooth; /* Desplazamiento suave */
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    text-align: center;
-    line-height: 1.6;
-}
-
-/* ----- HEADER ----- */
+/* HEADER */
 header {
-    background-color: #ff4c4c;
-    color: white;
-    padding: 20px;
-    text-align: center;
+    background-color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    flex-wrap: wrap; /* Permite que el header se ajuste en pantallas pequeñas */
 }
 
-/* ----- MAIN ----- */
+header .logo h1 {
+    font-size: 24px;
+    color: white;
+    margin: 10px 0; /* Espaciado para pantallas pequeñas */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap; /* Permite que los enlaces se ajusten en pantallas pequeñas */
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ff4c4c;
+}
+
+/* MAIN */
 main {
-    max-width: 800px;
-    margin: 40px auto;
-    background: white;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: #333;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 main h2 {
-    color: #444;
+    color: #ff4c4c;
     margin-bottom: 15px;
 }
 
 main p {
     font-size: 18px;
     margin-bottom: 15px;
+    color: #ffffff;
 }
 
-main a {
+.btn {
     display: inline-block;
     padding: 10px 15px;
     background-color: #ff4c4c;
     color: white;
     text-decoration: none;
     border-radius: 5px;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.3s;
 }
 
-main a:hover {
+.btn:hover, .btn:focus {
     background-color: #ff1a1a;
+    transform: scale(1.05); /* Efecto de escala al hacer hover */
 }
 
-/* ----- FOOTER ----- */
+/* FOOTER */
 footer {
     text-align: center;
     padding: 15px;
-    background-color: #ff4c4c;
+    background-color: #333;
     color: white;
+    width: 100%;
     margin-top: 40px;
+}
 
-    .logo-github {
-        width: 2em;
-        height: auto;
-        margin: 0 auto;
-      }
+footer a {
+    text-decoration: none;
+    color: #ff4c4c;
+}
+
+footer .logo-github {
+    width: 2em;
+    height: auto;
+    margin: 0 auto;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header .logo h1 {
+        font-size: 20px;
+    }
+
+    nav ul {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    nav ul li a {
+        font-size: 14px;
+    }
+
+    main {
+        margin: 20px 10px;
+        padding: 15px;
+    }
+
+    main h2 {
+        font-size: 22px;
+    }
+
+    main p {
+        font-size: 16px;
+    }
+
+    .btn {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    header .logo h1 {
+        font-size: 18px;
+    }
+
+    nav ul li a {
+        font-size: 12px;
+    }
+
+    main h2 {
+        font-size: 20px;
+    }
+
+    main p {
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
 }

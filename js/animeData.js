@@ -137,6 +137,9 @@ export const animeList = [
     { name: "Kimetsu no Yaiba Katanakaji no Sato-hen", type: "series" },
     { name: "Lovely Complex", type: "series" },
     { name: "Lamune", type: "series" },
+
+    //! MOVIES
+
     { name: "Kimi no na wa", type: "movies" },
     { name: "Boruto Naruto the movie", type: "movies" },
     { name: "Koe no Katachi", type: "movies" },
@@ -144,7 +147,6 @@ export const animeList = [
     { name: "Kimi no suizou wo tabetai", type: "movies" },
     { name: "Boku ga Aishita Subete no Kimi e", type: "movies" },
     { name: "Sword Art Online Progressive Movie - Hoshi Naki Yoru no Aria", type: "movies" },
-    // aca cambiar
     { name: "Black Fox", type: "movies" },
     { name: "Tenki no Ko", type: "movies" },
     { name: "Seishun Buta Yarou wa Yumemiru Shoujo no Yume wo Minai", type: "movies" },
@@ -178,7 +180,7 @@ export const animeList = [
     { name: "Belle", type: "movies" },
     { name: "Mirai no Mirai", type: "movies" },
     { name: "Bakemono no Ko", type: "movies" },
-    { name: "Naruto Shippuden The Movie", type: "movies" }, // ver
+    { name: "Naruto Shippuden The Movie", type: "movies" }, //! ver
     { name: "Byousoku 5 Centimeter", type: "movies" },
     { name: "Toki wo Kakeru Shoujo", type: "movies" },
     { name: "Kimitachi wa Dō Ikiru ka", type: "movies" },

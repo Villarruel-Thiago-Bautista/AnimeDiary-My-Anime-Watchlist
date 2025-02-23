@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anime Diary - Mi Lista de Animes</title>
-    <link rel="stylesheet" href="/css/index.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Registra y explora las series y películas de anime que has visto con Anime Diary. Conectado a la API de Jikan para información en tiempo real.">
+        <meta name="keywords" content="anime, series, películas, Jikan, API, Anime Diary">
+        <meta name="author" content="Villarruel Thiago Bautista">
+        <title>Anime Diary</title>
+        <link rel="stylesheet" href="/css/index.css">
+    </head>
 <body>
     <header>
-        <h1>Anime Diary - Mi Lista de Animes</h1>     
+        <div class="logo">
+            <h1>Anime Diary</h1>
+        </div>
+        <nav aria-label="Navegación principal">
+            <ul>
+                <li><a href="/" aria-current="page">Inicio</a></li>
+                <li><a href="/html/list.html">Explorar</a></li>
+            </ul>
+        </nav>
+
     </header>
     
     <main>
         <section id="about">
             <h2>¿Qué es esto?</h2>
-            <p>Esta es una página donde registraré todas las series y peliculas de anime que he visto. <br><b>La información de los animes y peliculas se obtiene y actualiza en tiempo real conectándose a la API de Jikan API</b>.</p>
-            <p><a href="/html/list.html">Explorar Animes</a></p>
+            <article>
+                <p>Esta es una página donde registraré todas las series y películas de anime que he visto.</p>
+                <p><b>La información de los animes y películas se obtiene y actualiza en tiempo real conectándose a la API de Jikan.</b></p>
+            </article>
+            <a href="/html/list.html" class="btn">Explorar Animes</a>
         </section>
     </main>
     

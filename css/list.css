@@ -1,4 +1,4 @@
-/* Reset básico para eliminar márgenes y paddings por defecto */
+/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -6,30 +6,46 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Roboto', sans-serif;
+    background-color: #1a1a1a;
+    color: #ffffff;
     text-align: center;
+    line-height: 1.6;
+    scroll-behavior: smooth; /* Desplazamiento suave */
 }
 
-/* ----- HEADER ----- */
+/* HEADER */
 header {
-    background-color: #ff4c4c;
-    color: white;
-    padding: 15px 0;
+    background-color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    justify-content: center;
     gap: 20px;
 }
 
+nav ul li {
+    display: inline;
+}
+
 nav ul li a {
-    color: white;
+    color: #ffffff;
     text-decoration: none;
     font-size: 18px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ff4c4c;
 }
 
 /* ----- FILTRO ----- */
@@ -38,44 +54,61 @@ nav ul li a {
     margin: 20px auto;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #555;
     border-radius: 5px;
-    background-color: white;
+    background-color: #333;
+    color: #ffffff;
 }
 
 /* ----- CONTENEDOR DE ANIMES ----- */
 #anime-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 15px;
+    padding: 20px;
+    justify-content: center;
 }
 
 .anime-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 150px;
-    text-align: center;
-    padding-bottom: 10px;
     position: relative;
+    display: flex;
+    overflow: hidden;
 }
 
 .anime-card img {
-    width: 150px;
-    height: 200px;
-    object-fit: cover;
+    display: block;
+    width: 100%;
+    height: auto;
     border-radius: 10px;
-    transition: transform 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
+/* Oscurecer la imagen al pasar el mouse */
 .anime-card:hover img {
-    transform: scale(1.0) translateY(-10px);
+    filter: brightness(50%);
     cursor: pointer;
-    box-shadow: 0px 0px 15px #ff1a1a;
-    transition: all 0.2s;
 }
+
+/* Contenedor para el icono de "play" */
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: #ff4c4c;
+    clip-path: polygon(25% 0%, 100% 50%, 25% 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none; /* Para evitar que interfiera con el clic */
+}
+
+/* Mostrar el icono de "play" cuando se pasa el mouse */
+.anime-card:hover .play-icon {
+    opacity: 1;
+}
+
 
 .anime-title {
     margin-top: 5px;
@@ -85,6 +118,7 @@ nav ul li a {
     border-radius: 5px;
     position: relative;
     z-index: 1;
+    color: #ffffff;
 }
 
 /* ----- PAGINACIÓN ----- */
@@ -98,9 +132,9 @@ nav ul li a {
 .pagination-btn {
     padding: 10px 15px;
     font-size: 16px;
-    border: 2px solid #ddd;
-    background-color: #f8f8f8;
-    color: #333;
+    border: 2px solid #555;
+    background-color: #333;
+    color: #ffffff;
     cursor: pointer;
     border-radius: 5px;
     transition: all 0.3s ease;
@@ -109,7 +143,7 @@ nav ul li a {
 }
 
 .pagination-btn:hover {
-    background-color: #e0e0e0;
+    background-color: #555;
 }
 
 .pagination-btn.active {
@@ -120,7 +154,7 @@ nav ul li a {
 }
 
 .pagination-btn:disabled {
-    background-color: #ccc;
+    background-color: #777;
     cursor: not-allowed;
 }
 
@@ -135,6 +169,8 @@ nav ul li a {
     outline: none;
     transition: all 0.3s ease-in-out;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #333;
+    color: #ffffff;
 }
 
 #search:focus {
@@ -150,9 +186,9 @@ nav ul li a {
 /* ----- SECCIÓN INFO ----- */
 #info {
     display: flex;
-    flex-direction: column; /* Asegura que los elementos estén en columna */
+    flex-direction: column;
     align-items: center;
-    background: white;
+    background: #333;
     padding: 20px;
     margin: 20px auto;
     max-width: 900px;
@@ -164,7 +200,7 @@ nav ul li a {
 
 .parent {
     display: flex;
-    flex-direction: row; /* Imagen y detalles en fila */
+    flex-direction: row;
     gap: 20px;
     width: 100%;
 }
@@ -203,15 +239,21 @@ nav ul li a {
 footer {
     text-align: center;
     padding: 15px;
-    background-color: #ff4c4c;
+    background-color: #333;
     color: white;
-    position: relative;
-    bottom: 0;
     width: 100%;
+    margin-top: 40px;
+}
 
-    .logo-github {
-        width: 2em;
-        height: auto;
-        margin: 0 auto;
-      }
+footer a {
+    text-decoration: none;
+    color: #ff4c4c;
+}
+
+
+
+footer .logo-github {
+    width: 2em;
+    height: auto;
+    margin: 0 auto;
 }
