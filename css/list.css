@@ -227,6 +227,7 @@ nav ul li a:hover, nav ul li a.active {
 
 .anime-card:hover img {
     filter: brightness(70%);
+    cursor: pointer;
 }
 
 .play-icon {
