@@ -8,41 +8,105 @@
         <meta name="author" content="Villarruel Thiago Bautista">
         <title>Anime Diary</title>
         <link rel="stylesheet" href="/css/index.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     </head>
 <body>
     <header>
-        <div class="logo">
-            <h1>Anime Diary</h1>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Anime Diary</h1>
+            </div>
+            <nav aria-label="Navegación principal">
+                <ul>
+                    <li><a href="/" class="active" aria-current="page">Inicio</a></li>
+                    <li><a href="/html/list.html">Explorar</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav aria-label="Navegación principal">
-            <ul>
-                <li><a href="/" aria-current="page">Inicio</a></li>
-                <li><a href="/html/list.html">Explorar</a></li>
-            </ul>
-        </nav>
-
     </header>
     
     <main>
-        <section id="about">
-            <h2>¿Qué es esto?</h2>
-            <article>
-                <p>Esta es una página donde registraré todas las series y películas de anime que he visto.</p>
-                <p><b>La información de los animes y películas se obtiene y actualiza en tiempo real conectándose a la API de Jikan.</b></p>
-            </article>
-            <a href="/html/list.html" class="btn">Explorar Animes</a>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Bienvenido a Anime Diary</h2>
+                <p>Tu diario personal de anime</p>
+                <a href="/html/list.html" class="cta-button">
+                    Explorar Colección
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            </svg>
+                        </div>
+                        <h3>Colección Personal</h3>
+                        <p>Registro cuidadosamente curado de series y películas de anime que he visto.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                        </div>
+                        <h3>Información en Tiempo Real</h3>
+                        <p>Datos actualizados constantemente a través de la API de Jikan.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                                <line x1="7" y1="2" x2="7" y2="22"></line>
+                                <line x1="17" y1="2" x2="17" y2="22"></line>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <line x1="2" y1="7" x2="7" y2="7"></line>
+                                <line x1="2" y1="17" x2="7" y2="17"></line>
+                                <line x1="17" y1="17" x2="22" y2="17"></line>
+                                <line x1="17" y1="7" x2="22" y2="7"></line>
+                            </svg>
+                        </div>
+                        <h3>Exploración Fácil</h3>
+                        <p>Navega por la colección con filtros y búsqueda intuitiva.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="container">
+                <div class="about-content">
+                    <h2>¿Qué es Anime Diary?</h2>
+                    <p>Anime Diary es mi espacio personal donde documento y comparto todas las series y películas de anime que he visto. Cada entrada está enriquecida con información detallada y actualizada en tiempo real gracias a la integración con la API de Jikan.</p>
+                    <div class="about-actions">
+                        <a href="/html/list.html" class="btn-primary">Ver Colección</a>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     
     <footer>
-        <p>&copy; 2025 Página creada por <a href="https://github.com/Villarruel-Thiago-Bautista"
-            >Villarruel Thiago Bautista
-            <img
-              id="logo_github"
-              class="logo-github"
-              src="img/logo-github-white.png"
-              alt="Logo github"
-          /></a></p>
+        <div class="footer-content">
+            <p>&copy; 2025 Página creada por 
+                <a href="https://github.com/Villarruel-Thiago-Bautista" target="_blank" rel="noopener noreferrer">
+                    Villarruel Thiago Bautista
+                    <img class="logo-github" src="img/logo-github-white.png" alt="Logo github">
+                </a>
+            </p>
+        </div>
     </footer>
 </body>
 </html>

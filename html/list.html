@@ -1,48 +1,79 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Explora y filtra tu lista de animes favoritos con Anime Diary. Conectado a la API de Jikan para información en tiempo real.">
-        <meta name="keywords" content="anime, lista, series, películas, Jikan, API, Anime Diary">
-        <meta name="author" content="Villarruel Thiago Bautista">
-        <title>Anime Diary - Lista de Animes</title>
-        <link rel="stylesheet" href="/css/list.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explora y filtra tu lista de animes favoritos con Anime Diary. Conectado a la API de Jikan para información en tiempo real.">
+    <meta name="keywords" content="anime, lista, series, películas, Jikan, API, Anime Diary">
+    <meta name="author" content="Villarruel Thiago Bautista">
+    <title>Anime Diary - Lista de Animes</title>
+    <link rel="stylesheet" href="/css/list.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
 <body>
     <header>
-        <h1>Anime Diary</h1>
-        <nav aria-label="Navegación principal">
-            <ul>
-                <li><a href="../index.html" aria-current="page">Inicio</a></li>
-            </ul>
-        </nav>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Anime Diary</h1>
+            </div>
+            <nav aria-label="Navegación principal">
+                <ul>
+                    <li><a href="../index.html" aria-current="page">Inicio</a></li>
+                    <li><a href="#" class="active">Lista</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     
     <main>
-        <section id="filters">
-            <select id="filter">
-                <option value="all">Todos</option>
-                <option value="series">Series</option>
-                <option value="movies">Películas</option>
-            </select>
-            <input type="text" id="search" placeholder="Buscar anime...">
-        </section>
-    
-        <section id="anime-container"></section>
-        <section id="info"></section>
-    
-        <div id="pagination"></div>
+        <div class="hero">
+            <div class="hero-content">
+                <h2>Tu colección de anime</h2>
+                <p>Explora nuestra biblioteca de series y películas</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <section id="filters" class="filters-section">
+                <div class="filter-container">
+                    <div class="filter-group">
+                        <label for="filter">Filtrar por:</label>
+                        <select id="filter">
+                            <option value="all">Todos</option>
+                            <option value="series">Series</option>
+                            <option value="movies">Películas</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <input type="text" id="search" placeholder="Buscar anime...">
+                        <div class="search-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <section id="anime-container" class="anime-grid"></section>
+            <section id="info" class="anime-info"></section>
+        
+            <div id="pagination" class="pagination"></div>
+        </div>
     </main>
+
     <footer>
-        <p>&copy; 2025 Página creada por <a href="https://github.com/Villarruel-Thiago-Bautista"
-            >Villarruel Thiago Bautista
-            <img
-              id="logo_github"
-              class="logo-github"
-              src="/img/logo-github-white.png"
-              alt="Logo github"
-          /></a></p>
+        <div class="footer-content">
+            <p>&copy; 2025 Página creada por 
+                <a href="https://github.com/Villarruel-Thiago-Bautista" target="_blank" rel="noopener noreferrer">
+                    Villarruel Thiago Bautista
+                    <img id="logo_github" class="logo-github" src="/img/logo-github-white.png" alt="Logo github">
+                </a>
+            </p>
+        </div>
     </footer>
     
     <script type="module" src="/js/main.js"></script>
