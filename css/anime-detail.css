@@ -4,14 +4,22 @@
     --primary-light: #9D4EDD;
     --primary-dark: #6A0DAD;
     --secondary: #FF4C4C;
-    --background: #121212;
-    --surface: #1E1E1E;
-    --surface-light: #2D2D2D;
-    --text: #FFFFFF;
-    --text-secondary: #B3B3B3;
-    --border: #333333;
+    --secondary-light: #b47cff;
+    --secondary-dark: #3f1dcb;
+    --accent: #00e5ff;
+    --background: #0a0a12;
+    --surface: #121220;
+    --surface-light: #1e1e30;
+    --surface-card: #1a1a28;
+    --text: #ffffff;
+    --text-secondary: #b3b3b3;
+    --text-tertiary: #8a8a8a;
+    --border: #2a2a40;
     --shadow: rgba(0, 0, 0, 0.3);
     --transition: all 0.3s ease;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
 }
 
 * {
@@ -29,6 +37,29 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 94, 148, 0.03) 0%, transparent 20%),
+        radial-gradient(circle at 90% 50%, rgba(124, 77, 255, 0.03) 0%, transparent 25%),
+        radial-gradient(circle at 40% 80%, rgba(0, 229, 255, 0.03) 0%, transparent 30%);
+    background-attachment: fixed;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-dark);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
 }
 
 /* Contenedor principal */
@@ -38,7 +69,7 @@ body {
     padding: 0 20px;
 }
 
-/* HEADER */
+/* HEADER - Mantenido intacto como solicitado */
 header {
     background-color: var(--surface);
     box-shadow: 0 4px 12px var(--shadow);
@@ -90,19 +121,15 @@ nav ul li a:hover {
 /* MAIN CONTENT */
 main {
     flex: 1;
-    padding: 40px 0;
+    padding: 40px 0 60px;
+    margin-top: 20px;
 }
 
-/* ANIME INFO CONTAINER */
+/* ANIME INFO CONTAINER - Nuevo diseño */
 #anime-info-container {
-    background-color: var(--surface);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 20px var(--shadow);
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
     animation: fadeIn 0.5s ease forwards;
 }
 
@@ -113,46 +140,80 @@ main {
     }
 }
 
-/* ANIME HERO */
+/* ANIME HERO - Nuevo diseño */
 #anime-hero {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background-color: var(--surface-card);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+}
+
+.hero-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px) brightness(0.3);
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
     padding: 30px;
-    background-color: var(--surface-light);
 }
 
 @media (min-width: 768px) {
-    #anime-hero {
-        flex-direction: row;
-        align-items: flex-start;
-        gap: 30px;
+    .hero-content {
+        grid-template-columns: 300px 1fr;
+        padding: 40px;
     }
 }
 
-#anime-hero img {
+.anime-poster {
     width: 100%;
     max-width: 300px;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px var(--shadow);
-    margin-bottom: 20px;
+    aspect-ratio: 2/3;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
 }
 
-@media (min-width: 768px) {
-    #anime-hero img {
-        margin-bottom: 0;
-    }
+.anime-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
-#anime-title-div {
-    flex: 1;
+.anime-poster:hover img {
+    transform: scale(1.05);
 }
 
-#anime-title-div h2 {
-    font-size: 2rem;
+.anime-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.anime-title {
+    font-size: 2.5rem;
+    font-weight: 700;
     margin-bottom: 15px;
-    color: var(--text);
+    background: linear-gradient(90deg, var(--primary-light), var(--secondary-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.2;
 }
 
 .anime-meta {
@@ -162,107 +223,284 @@ main {
     margin-bottom: 20px;
 }
 
-.anime-meta span {
-    background-color: var(--surface);
-    padding: 6px 12px;
-    border-radius: 6px;
+.meta-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 6px 14px;
+    border-radius: 50px;
     font-size: 0.9rem;
     color: var(--text-secondary);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.meta-item svg {
+    width: 16px;
+    height: 16px;
+    opacity: 0.8;
 }
 
 .anime-score {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.score-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.score-max {
+    font-size: 1.2rem;
+    color: var(--text-tertiary);
+    margin-top: 5px;
 }
 
 .stars {
     --percent: calc(var(--rating) * 20%);
     display: inline-block;
     font-size: 1.5rem;
-    font-family: Times;
     line-height: 1;
 }
 
 .stars::before {
     content: '★★★★★';
     letter-spacing: 3px;
-    background: linear-gradient(90deg, var(--primary) var(--percent), var(--surface) var(--percent));
+    background: linear-gradient(90deg, var(--primary) var(--percent), rgba(255, 255, 255, 0.2) var(--percent));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
 }
 
-/* ANIME DETAILS */
-#anime-details {
+/* ANIME DETAILS SECTION - Nuevo diseño */
+.details-section {
     display: grid;
-    gap: 20px;
-    padding: 30px;
+    gap: 30px;
+    grid-template-columns: 1fr;
 }
 
 @media (min-width: 768px) {
-    #anime-details {
-        grid-template-columns: repeat(2, 1fr);
+    .details-section {
+        grid-template-columns: 2fr 1fr;
     }
 }
 
-.detail-card {
-    background-color: var(--surface-light);
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px var(--shadow);
+/* ANIME TABS - Nuevo diseño */
+.tabs-container {
+    background-color: var(--surface-card);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.detail-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-    color: var(--primary-light);
+.tabs-header {
+    display: flex;
+    border-bottom: 1px solid var(--border);
     position: relative;
-    padding-bottom: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
 }
 
-.detail-card h3::after {
+.tabs-header::-webkit-scrollbar {
+    display: none;
+}
+
+.tab-button {
+    padding: 16px 24px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.tab-button.active {
+    color: var(--primary);
+    position: relative;
+}
+
+.tab-button.active::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 50px;
+    width: 100%;
     height: 3px;
     background: linear-gradient(90deg, var(--primary), var(--secondary));
-    border-radius: 3px;
+    border-radius: 3px 3px 0 0;
 }
 
-.detail-card p {
-    margin-bottom: 10px;
-    line-height: 1.7;
+.tab-content {
+    padding: 30px;
 }
 
-.detail-card p strong {
-    color: var(--text);
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+/* SINOPSIS TAB */
+.synopsis {
+    line-height: 1.8;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+}
+
+/* INFORMACIÓN TAB */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 576px) {
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.info-item {
+    margin-bottom: 15px;
+}
+
+.info-label {
     font-weight: 600;
+    color: var(--primary-light);
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.trailer {
+.info-value {
+    color: var(--text-secondary);
+}
+
+/* TRAILER TAB */
+.trailer-container {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
     height: 0;
     overflow: hidden;
-    margin-top: 15px;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
 }
 
-.trailer iframe {
+.trailer-container iframe {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     border: none;
-    border-radius: 8px;
 }
 
-/* BACK BUTTON */
+/* SIDEBAR - Nuevo diseño */
+.anime-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.sidebar-card {
+    background-color: var(--surface-card);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-card-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar-card-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text);
+}
+
+.sidebar-card-header svg {
+    width: 20px;
+    height: 20px;
+    color: var(--primary);
+}
+
+.sidebar-card-body {
+    padding: 20px;
+}
+
+/* GÉNEROS */
+.genres-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.genre-tag {
+    background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+    color: white;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.genre-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ESTADÍSTICAS */
+.stats-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 15px 10px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+
+.stat-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-light);
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* BACK BUTTON - Nuevo diseño */
 .back-button-container {
     display: flex;
     justify-content: center;
@@ -272,36 +510,47 @@ main {
 .back-btn {
     display: flex;
     align-items: center;
-    gap: 8px;
-    background-color: var(--primary);
+    gap: 10px;
+    background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
     color: white;
     border: none;
     padding: 12px 24px;
-    border-radius: 8px;
+    border-radius: 50px;
     font-family: inherit;
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
     transition: var(--transition);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
 }
 
 .back-btn:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .back-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* FOOTER */
+/* FOOTER - Nuevo diseño */
 footer {
     background-color: var(--surface);
     padding: 25px 0;
     margin-top: auto;
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
 }
 
 .footer-content {
@@ -321,7 +570,7 @@ footer a {
 }
 
 footer a:hover {
-    color: var(--secondary);
+    color: var(--secondary-light);
 }
 
 .logo-github {
@@ -329,15 +578,36 @@ footer a:hover {
     height: 20px;
 }
 
-/* LOADING SPINNER */
+/* LOADING SPINNER - Nuevo diseño */
 .loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid var(--surface-light);
-    border-top: 5px solid var(--primary);
-    border-radius: 50%;
+    width: 60px;
+    height: 60px;
     margin: 50px auto;
+    position: relative;
+}
+
+.loading-spinner::before,
+.loading-spinner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid transparent;
+}
+
+.loading-spinner::before {
+    border-top-color: var(--primary);
+    border-right-color: var(--secondary);
     animation: spin 1s linear infinite;
+}
+
+.loading-spinner::after {
+    border-bottom-color: var(--primary);
+    border-left-color: var(--secondary);
+    animation: spin 1.5s linear reverse infinite;
 }
 
 @keyframes spin {
@@ -345,22 +615,13 @@ footer a:hover {
     100% { transform: rotate(360deg); }
 }
 
-/* RESPONSIVE */
-@media (max-width: 480px) {
-    #anime-title-div h2 {
-        font-size: 1.5rem;
-    }
-    
-    .detail-card h3 {
-        font-size: 1.1rem;
-    }
-    
-    .anime-meta {
-        gap: 5px;
-    }
-    
-    .anime-meta span {
-        font-size: 0.8rem;
-        padding: 4px 8px;
-    }
+/* ERROR MESSAGE */
+.no-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    background-color: var(--surface-card);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }

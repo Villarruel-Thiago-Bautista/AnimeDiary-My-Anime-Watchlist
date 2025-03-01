@@ -1,0 +1,35 @@
+:root {
+    /* Main colors */
+    --sakura-pink: #f8bbd0;
+    --sakura-pink-light: #ffeeff;
+    --sakura-pink-dark: #c48b9f;
+    --sakura-accent: #ff80ab;
+  
+    /* Dark theme colors */
+    --bg-primary: #0f0f13;
+    --bg-secondary: #16161e;
+    --bg-tertiary: #1a1b26;
+    --bg-card: #1e1e2e;
+    --bg-elevated: #24283b;
+  
+    /* Text colors */
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --text-tertiary: #b0b0b0;
+  
+    /* Functional colors */
+    --border: #2c2e3e;
+    --shadow: rgba(0, 0, 0, 0.4);
+    --shadow-light: rgba(0, 0, 0, 0.2);
+  
+    /* Animation */
+    --transition-fast: all 0.2s ease;
+    --transition: all 0.3s ease;
+    --transition-slow: all 0.5s ease;
+  
+    /* Glass effect */
+    --glass-bg: rgba(30, 30, 46, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --glass-blur: 10px;
+  }

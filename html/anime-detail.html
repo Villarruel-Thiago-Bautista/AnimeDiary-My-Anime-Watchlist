@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- HEADER - Mantenido intacto como solicitado -->
     <header>
         <div class="header-container">
             <div class="logo">
@@ -28,16 +29,18 @@
     
     <main>
         <div class="container">
+            <!-- Contenedor principal para la información del anime -->
             <div id="anime-info-container"></div>
             
+            <!-- Botón para volver a la lista -->
             <div class="back-button-container">
-                <button id="back-button" class="back-btn" onclick="window.location.href='list.html'">
+                <a href="list.html" class="back-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="19" y1="12" x2="5" y2="12"></line>
                         <polyline points="12 19 5 12 12 5"></polyline>
                     </svg>
                     Volver a la lista
-                </button>
+                </a>
             </div>
         </div>
     </main>
