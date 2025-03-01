@@ -1,18 +1,26 @@
 /* Variables y reset */
 :root {
     --primary: #8A2BE2;
-    --primary-light: #9D4EDD;
-    --primary-dark: #6A0DAD;
-    --secondary: #FF4C4C;
-    --background: #121212;
-    --surface: #1E1E1E;
-    --surface-light: #2D2D2D;
-    --text: #FFFFFF;
-    --text-secondary: #B3B3B3;
-    --border: #333333;
+      --primary-light: #9D4EDD;
+      --primary-dark: #6A0DAD;
+      --secondary: #FF4C4C;
+    --secondary-light: #b47cff;
+    --secondary-dark: #3f1dcb;
+    --accent: #00e5ff;
+    --background: #0a0a12;
+    --surface: #121220;
+    --surface-light: #1e1e30;
+    --surface-card: #1a1a28;
+    --text: #ffffff;
+    --text-secondary: #b3b3b3;
+    --text-tertiary: #8a8a8a;
+    --border: #2a2a40;
     --shadow: rgba(0, 0, 0, 0.3);
     --transition: all 0.3s ease;
-}
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+  }
 
 * {
     margin: 0;
@@ -127,10 +135,8 @@ nav ul li a:hover, nav ul li a.active {
     gap: 20px;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--surface);
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px var(--shadow);
 }
 
 .filter-group, .search-group {
@@ -228,36 +234,6 @@ nav ul li a:hover, nav ul li a.active {
 .anime-card:hover img {
     filter: brightness(70%);
     cursor: pointer;
-}
-
-.play-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    background-color: var(--primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: var(--transition);
-}
-
-.play-icon::before {
-    content: '';
-    width: 0;
-    height: 0;
-    border-top: 12px solid transparent;
-    border-bottom: 12px solid transparent;
-    border-left: 20px solid white;
-    margin-left: 4px;
-}
-
-.anime-card:hover .play-icon {
-    opacity: 1;
 }
 
 .anime-title {
@@ -392,37 +368,66 @@ nav ul li a:hover, nav ul li a.active {
     border-radius: 8px;
 }
 
-/* FOOTER */
-footer {
+ /* Scrollbar styling */
+ ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--surface);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--primary-dark);
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+  }
+    
+  /* FOOTER - Nuevo diseño */
+  footer {
     background-color: var(--surface);
     padding: 25px 0;
     margin-top: auto;
-}
-
-.footer-content {
+    position: relative;
+  }
+  
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+  }
+  
+  .footer-content {
     max-width: 1400px;
     margin: 0 auto;
     text-align: center;
     padding: 0 20px;
-}
-
-footer a {
+  }
+  
+  footer a {
     color: var(--primary-light);
     text-decoration: none;
     transition: var(--transition);
     display: inline-flex;
     align-items: center;
     gap: 5px;
-}
-
-footer a:hover {
-    color: var(--secondary);
-}
-
-.logo-github {
+  }
+  
+  footer a:hover {
+    color: var(--secondary-light);
+  }
+  
+  .logo-github {
     width: 20px;
     height: 20px;
-}
+  }
 
 /* Mensaje de no resultados */
 .no-results {

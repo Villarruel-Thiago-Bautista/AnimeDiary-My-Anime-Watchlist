@@ -1,18 +1,26 @@
 /* Variables y reset */
 :root {
-    --primary: #8a2be2;
-    --primary-light: #9d4edd;
-    --primary-dark: #6a0dad;
-    --secondary: #ff4c4c;
-    --background: #121212;
-    --surface: #1e1e1e;
-    --surface-light: #2d2d2d;
-    --text: #ffffff;
-    --text-secondary: #b3b3b3;
-    --border: #333333;
-    --shadow: rgba(0, 0, 0, 0.3);
-    --transition: all 0.3s ease;
-  }
+  --primary: #8A2BE2;
+    --primary-light: #9D4EDD;
+    --primary-dark: #6A0DAD;
+    --secondary: #FF4C4C;
+  --secondary-light: #b47cff;
+  --secondary-dark: #3f1dcb;
+  --accent: #00e5ff;
+  --background: #0a0a12;
+  --surface: #121220;
+  --surface-light: #1e1e30;
+  --surface-card: #1a1a28;
+  --text: #ffffff;
+  --text-secondary: #b3b3b3;
+  --text-tertiary: #8a8a8a;
+  --border: #2a2a40;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --transition: all 0.3s ease;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+}
   
   * {
     margin: 0;
@@ -267,38 +275,67 @@
     background-color: var(--primary-dark);
     transform: translateY(-2px);
   }
+
+  /* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-dark);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
   
-  /* FOOTER */
-  footer {
-    background-color: var(--surface);
-    padding: 25px 0;
-    margin-top: auto;
-  }
-  
-  .footer-content {
-    max-width: 1400px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 0 20px;
-  }
-  
-  footer a {
-    color: var(--primary-light);
-    text-decoration: none;
-    transition: var(--transition);
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-  }
-  
-  footer a:hover {
-    color: var(--secondary);
-  }
-  
-  .logo-github {
-    width: 20px;
-    height: 20px;
-  }
+/* FOOTER - Nuevo diseño */
+footer {
+  background-color: var(--surface);
+  padding: 25px 0;
+  margin-top: auto;
+  position: relative;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+}
+
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 20px;
+}
+
+footer a {
+  color: var(--primary-light);
+  text-decoration: none;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+footer a:hover {
+  color: var(--secondary-light);
+}
+
+.logo-github {
+  width: 20px;
+  height: 20px;
+}
   
   /* Responsive */
   @media (max-width: 768px) {
